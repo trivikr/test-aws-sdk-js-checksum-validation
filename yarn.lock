@@ -1657,7 +1657,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@smithy/util-stream@npm:^4.5.6":
+"@smithy/util-stream@npm:4.5.6":
   version: 4.5.6
   resolution: "@smithy/util-stream@npm:4.5.6"
   dependencies:
@@ -1670,6 +1670,22 @@ __metadata:
     "@smithy/util-utf8": "npm:^4.2.0"
     tslib: "npm:^2.6.2"
   checksum: 10c0/42bb6f834b3f617cf2e421450cf43f7259c1cc4cd7c7ad230e4c929fed265ef7b9f3610977df497115978f3d7a80d569ea1abbbef8d595e6b2e1a4ccca3a37fa
+  languageName: node
+  linkType: hard
+
+"@smithy/util-stream@patch:@smithy/util-stream@npm%3A4.5.6#~/.yarn/patches/@smithy-util-stream-npm-4.5.6-2962292a4c.patch":
+  version: 4.5.6
+  resolution: "@smithy/util-stream@patch:@smithy/util-stream@npm%3A4.5.6#~/.yarn/patches/@smithy-util-stream-npm-4.5.6-2962292a4c.patch::version=4.5.6&hash=e8ad5a"
+  dependencies:
+    "@smithy/fetch-http-handler": "npm:^5.3.6"
+    "@smithy/node-http-handler": "npm:^4.4.5"
+    "@smithy/types": "npm:^4.9.0"
+    "@smithy/util-base64": "npm:^4.3.0"
+    "@smithy/util-buffer-from": "npm:^4.2.0"
+    "@smithy/util-hex-encoding": "npm:^4.2.0"
+    "@smithy/util-utf8": "npm:^4.2.0"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/127b916dfbbe829f3d37575a935faec56d8685d09fd573be817916e4b425332b1397dff413f444558b211930d85bd480cf3e144a1baacaec4eec4c1cbfbae3b5
   languageName: node
   linkType: hard
 

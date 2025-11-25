@@ -1,0 +1,12 @@
+diff --git a/dist-es/checksum/createChecksumStream.browser.js b/dist-es/checksum/createChecksumStream.browser.js
+index 6a41c12144216908b0d2a879ad20bc3883e4d168..8a9636ca30e2dc3f8f8108852442f1dbfd55e245 100644
+--- a/dist-es/checksum/createChecksumStream.browser.js
++++ b/dist-es/checksum/createChecksumStream.browser.js
+@@ -12,6 +12,7 @@ export const createChecksumStream = ({ expectedChecksum, checksum, source, check
+     const transform = new TransformStream({
+         start() { },
+         async transform(chunk, controller) {
++            console.log(`Data size: ${chunk.byteLength} bytes`);
+             checksum.update(chunk);
+             controller.enqueue(chunk);
+         },

@@ -31,8 +31,43 @@ To set up this notes app, complete the following tasks:
   - `VITE_REGION` should have the region being tested.
 - The bucket "Cross-origin resource sharing (CORS)" should allow the localhost origin
   - `"AllowedOrigins": [ "http://localhost:5173"]`
+  - `"ExposeHeaders": ["x-amz-checksum-crc32"]`
 
 ## Test
 
 - Run `yarn put:object` to put test object in bucket.
+- Examine the patch file
+  ```console
+  $ cat .yarn/patches/@smithy-util-stream-npm-4.5.6-2962292a4c.patch
+  ...
+       const transform = new TransformStream({
+         start() { },
+         async transform(chunk, controller) {
+  +          console.log(`Data size: ${chunk.byteLength} bytes`);
+             checksum.update(chunk);
+             controller.enqueue(chunk);
+         },
+  ```
 - Run `yarn get:object` to open vite project which gets the test object.
+
+Open console tab, and look for 'Data size'. It'll range from 16KB to 128KB
+
+```console
+Data size: 16585 bytes
+Data size: 36546 bytes
+Data size: 61816 bytes
+2Data size: 34816 bytes
+Data size: 65536 bytes
+Data size: 20480 bytes
+Data size: 18432 bytes
+Data size: 65536 bytes
+Data size: 37888 bytes
+Data size: 70656 bytes
+Data size: 65536 bytes
+Data size: 21504 bytes
+4Data size: 34816 bytes
+Data size: 65536 bytes
+Data size: 104448 bytes
+Data size: 124928 bytes
+Data size: 64253 bytes
+```

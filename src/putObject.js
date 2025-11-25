@@ -5,6 +5,9 @@ const client = new S3({ region });
 
 const Bucket = process.env.VITE_BUCKET;
 const Key = process.env.VITE_KEY;
-const Body = "bar";
+const Body = Array(1024 * 1024) // 1 MB file
+  .fill(0)
+  .map(() => String.fromCharCode(65 + Math.random() * 26))
+  .join("");
 
 await client.putObject({ Bucket, Key, Body });
