@@ -36,3 +36,15 @@ To set up this notes app, complete the following tasks:
 
 - Run `yarn put:object` to put test object in bucket.
 - Run `yarn get:object` to open vite project which gets the test object.
+
+Open Network tab in the browser and note that:
+- There's no value populated for 'access-control-expose-headers'
+- Although 'x-amz-checksum-crc32' is present, it's not available to AWS SDK for JavaScript as it's blocked by CORS
+
+  <details><summary>Click to view screenshot</summary>
+  <p>
+
+  ![screenshot-node](./img/screenshot.png)
+
+  </p>
+  </details>
