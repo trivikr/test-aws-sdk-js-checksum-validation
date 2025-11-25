@@ -44,7 +44,11 @@ Open Network tab in the browser and note that:
   <details><summary>Click to view screenshot</summary>
   <p>
 
-  ![screenshot-node](./img/screenshot.png)
+  ![screenshot](./img/screenshot.png)
 
   </p>
   </details>
+
+If you want to expose specific headers over CORS, the `ExposeHeaders` configuration needs to be updated in S3 Bucket CORS configuration.
+
+For this specific case, where CRC32 checksum is stored, the configuration is `"ExposeHeaders": ["x-amz-checksum-crc32"]`
