@@ -1,0 +1,21 @@
+{
+  "name": "test-aws-sdk-js-checksum-validation",
+  "version": "1.0.0",
+  "description": "Minimal repro to check checksum validation with AWS SDK for JavaScript in browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trivikr/test-aws-sdk-js-checksum-validation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trivikr/test-aws-sdk-js-checksum-validation/issues"
+  },
+  "homepage": "https://github.com/trivikr/test-aws-sdk-js-checksum-validation#readme",
+  "packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b"
+}
