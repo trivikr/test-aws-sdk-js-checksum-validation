@@ -25,9 +25,5 @@
     "vite": "^7.2.4"
   },
   "type": "module",
-  "packageManager": "yarn@4.12.0+sha512.f45ab632439a67f8bc759bf32ead036a1f413287b9042726b7cc4818b7b49e14e9423ba49b18f9e06ea4941c1ad062385b1d8760a8d5091a1a31e5f6219afca8",
-  "resolutions": {
-    "@aws-sdk/middleware-flexible-checksums@npm:3.936.0": "patch:@aws-sdk/middleware-flexible-checksums@npm%3A3.936.0#~/.yarn/patches/@aws-sdk-middleware-flexible-checksums-npm-3.936.0-722574480c.patch",
-    "@smithy/fetch-http-handler@npm:^5.3.6": "patch:@smithy/fetch-http-handler@npm%3A5.3.6#~/.yarn/patches/@smithy-fetch-http-handler-npm-5.3.6-3aa269d8ab.patch"
-  }
+  "packageManager": "yarn@4.12.0+sha512.f45ab632439a67f8bc759bf32ead036a1f413287b9042726b7cc4818b7b49e14e9423ba49b18f9e06ea4941c1ad062385b1d8760a8d5091a1a31e5f6219afca8"
 }
