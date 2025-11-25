@@ -1,3 +1,15 @@
+diff --git a/dist-cjs/checksum/ChecksumStream.js b/dist-cjs/checksum/ChecksumStream.js
+index f1624ec237374cbbcaca28bb7890f4a8179ae2a1..d14187f6876b0469bc5d2a2d3914b835579fcfee 100644
+--- a/dist-cjs/checksum/ChecksumStream.js
++++ b/dist-cjs/checksum/ChecksumStream.js
+@@ -26,6 +26,7 @@ class ChecksumStream extends stream_1.Duplex {
+     _read(size) { }
+     _write(chunk, encoding, callback) {
+         try {
++            console.log(`Data size: ${chunk.byteLength} bytes`);
+             this.checksum.update(chunk);
+             this.push(chunk);
+         }
 diff --git a/dist-es/checksum/createChecksumStream.browser.js b/dist-es/checksum/createChecksumStream.browser.js
 index 6a41c12144216908b0d2a879ad20bc3883e4d168..8a9636ca30e2dc3f8f8108852442f1dbfd55e245 100644
 --- a/dist-es/checksum/createChecksumStream.browser.js

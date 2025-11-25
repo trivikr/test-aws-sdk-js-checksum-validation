@@ -35,22 +35,187 @@ To set up this notes app, complete the following tasks:
 
 ## Test
 
-- Run `yarn put:object` to put test object in bucket.
-- Examine the patch file
-  ```console
-  $ cat .yarn/patches/@smithy-util-stream-npm-4.5.6-2962292a4c.patch
-  ...
-       const transform = new TransformStream({
+Run `yarn put:object` to put test object in bucket.
+
+The patch file prints the chunk size before it's sent to checksum computation, in both Node.js and browser environments.
+
+<details><summary>cat .yarn/patches/@smithy-util-stream-npm-4.5.6-2962292a4c.patch</summary>
+<p>
+
+```diff
+diff --git a/dist-cjs/checksum/ChecksumStream.js b/dist-cjs/checksum/ChecksumStream.js
+index f1624ec237374cbbcaca28bb7890f4a8179ae2a1..d14187f6876b0469bc5d2a2d3914b835579fcfee 100644
+--- a/dist-cjs/checksum/ChecksumStream.js
++++ b/dist-cjs/checksum/ChecksumStream.js
+@@ -26,6 +26,7 @@ class ChecksumStream extends stream_1.Duplex {
+     _read(size) { }
+     _write(chunk, encoding, callback) {
+         try {
++            console.log(`Data size: ${chunk.byteLength} bytes`);
+             this.checksum.update(chunk);
+             this.push(chunk);
+         }
+diff --git a/dist-es/checksum/createChecksumStream.browser.js b/dist-es/checksum/createChecksumStream.browser.js
+index 6a41c12144216908b0d2a879ad20bc3883e4d168..8a9636ca30e2dc3f8f8108852442f1dbfd55e245 100644
+--- a/dist-es/checksum/createChecksumStream.browser.js
++++ b/dist-es/checksum/createChecksumStream.browser.js
+@@ -12,6 +12,7 @@ export const createChecksumStream = ({ expectedChecksum, checksum, source, check
+     const transform = new TransformStream({
          start() { },
          async transform(chunk, controller) {
-  +          console.log(`Data size: ${chunk.byteLength} bytes`);
++            console.log(`Data size: ${chunk.byteLength} bytes`);
              checksum.update(chunk);
              controller.enqueue(chunk);
          },
-  ```
-- Run `yarn get:object` to open vite project which gets the test object.
+```
+
+</p>
+</details>
+
+### Node.js
+
+Run `yarn get:object:node` to get object in Node.js runtime.
+
+<details><summary>yarn get:object:node</summary>
+<p>
+
+```console
+Data size: 16384 bytes
+Data size: 513 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 1730 bytes
+Data size: 9000 bytes
+Data size: 9000 bytes
+Data size: 9000 bytes
+Data size: 8408 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 16384 bytes
+Data size: 1024 bytes
+Data size: 2285 bytes
+```
+
+</p>
+</details>
+
+
+### Web
+
+Run `yarn get:object:web` to open vite project which gets the test object in browser.
 
 Open console tab, and look for 'Data size'. It'll range from 16KB to 128KB
+
+<details><summary>yarn get:object:web</summary>
+<p>
 
 ```console
 Data size: 16585 bytes
@@ -71,3 +236,6 @@ Data size: 104448 bytes
 Data size: 124928 bytes
 Data size: 64253 bytes
 ```
+
+</p>
+</details>

@@ -4,7 +4,8 @@
   "description": "Minimal repro to check checksum validation with AWS SDK for JavaScript in browser",
   "main": "index.js",
   "scripts": {
-    "get:object": "vite --open",
+    "get:object:node": "node --env-file=.env src/getObject.js",
+    "get:object:web": "vite --open",
     "put:object": "node --env-file=.env src/putObject.js"
   },
   "repository": {
